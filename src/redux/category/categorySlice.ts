@@ -1,32 +1,39 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {CategoryItem, CategorySliceState} from './categoryTypes'
+import {createSlice, PayloadAction, SerializedError} from '@reduxjs/toolkit';
+import {CategoryItem} from './categoryTypes'
 import {fetchCategory} from "./categoryAction";
 
+
+
+interface CategorySliceState{
+    categories:CategoryItem[];
+    error:SerializedError;
+    isLoading:boolean;
+}
+
 const initialState: CategorySliceState = {
-    items:[{id:0,category_name:""}]
+    categories:[],
+    error:{},
+    isLoading:false
 };
 
 const categorySlice = createSlice({
     name: 'category',
     initialState,
-    reducers: {
-        setItems(state, action: PayloadAction<CategoryItem[]>) {
-            state.items = action.payload;
-        },
-    },
+    reducers: {},
+
     extraReducers: (builder) => {
         builder.addCase(fetchCategory.pending, (state, action) => {
-            state.items = [];
-        });
+            state.isLoading = true;
 
-        builder.addCase(fetchCategory.fulfilled, (state,action) => {
-            if (action.payload)
-            state.items = action.payload;
         });
-
+        builder.addCase(fetchCategory.fulfilled, (state, action:PayloadAction<CategoryItem[]>) => {
+            state.isLoading = false;
+            state.categories = action.payload;
+        });
         builder.addCase(fetchCategory.rejected, (state, action) => {
-            state.items = [];
-        })
+            state.isLoading = false;
+            state.error = action.error;
+        });
     }
 });
 

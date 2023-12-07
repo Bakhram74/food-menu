@@ -2,10 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { useDispatch } from 'react-redux';
 import categorySlice from "./category/categorySlice";
+import productSlice from "./product/productSlice";
+import topProductSlice from "./product/topProduct/topProductSlice";
 
 export const store = configureStore({
     reducer: {
-        categorySlice
+        categorySlice,
+        productSlice,
+        topProductSlice
     },
 });
 

@@ -6,14 +6,13 @@ import {CategoryItem} from "./categoryTypes";
 
 
 export const fetchCategory = createAsyncThunk(
-    'category/fetchCategoryStatus',
-    async (_, { rejectWithValue }) => {
+    'category/fetchCategory',
+    async (_, thunkAPI) => {
         try {
-            const res = await axios.get(`http://localhost:4200/category`);
-            if (res.status == 200)
-            return  res.data
+            const response = await axios.get<CategoryItem[]>(`http://localhost:4200/category`);
+            return  response.data
         } catch (error) {
-             rejectWithValue(error)
+            return thunkAPI.rejectWithValue(error)
         }
     }
 );

@@ -3,6 +3,3 @@ export type CategoryItem = {
   category_name:string
 };
 
-export interface CategorySliceState {
-    items: CategoryItem[];
-}

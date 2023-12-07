@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider,} from "react-router-dom";
 import Category from "./components/Category/Category";
 import Header from "./components/Header/Header";
+import Product from "./components/Product/Product";
 
 
 const Layout = () => {
@@ -11,6 +12,7 @@ const Layout = () => {
         <div>
             <Header/>
             <Category/>
+            <Product/>
             <Outlet/>
         </div>
     );
@@ -18,8 +20,10 @@ const Layout = () => {
 
 const router = createBrowserRouter(
     createRoutesFromElements(
+
         <Route>
             <Route path="/" element={<Layout/>}>
+
             </Route>
         </Route>
     )
