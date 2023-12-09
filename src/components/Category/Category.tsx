@@ -7,6 +7,7 @@ import React, { useEffect} from "react";
 import {selectCategory} from "../../redux/selectors";
 import {fetchCategory} from "../../redux/category/categoryAction";
 import {SampleNextArrow, SamplePrevArrow} from "./Arrow";
+import {setActiveCategory} from "../../redux/category/categorySlice";
 
 
 
@@ -15,13 +16,15 @@ import {SampleNextArrow, SamplePrevArrow} from "./Arrow";
 
 function Category() {
     const dispatch = useAppDispatch();
-    const {categories,isLoading,error} = useSelector(selectCategory);
+    const {activeCategory,categories,isLoading,error} = useSelector(selectCategory);
     useEffect(() => {
         dispatch(fetchCategory())
     },[] )
 
-
-
+const clickSetActiveCategory=(category:string)=>{
+        dispatch(setActiveCategory(category))
+}
+    console.log(activeCategory)
     const settings = {
         infinite: true,
         speed: 500,
@@ -58,16 +61,19 @@ function Category() {
     };
     return (
 
-    <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky z-20">
+    <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky top-0  z-20">
         {isLoading && <h1>Идет загрузка...</h1>}
         {error && <h1>{error.message}</h1>}
         <Slider {...settings}>
             {categories.map((category) => (
                 <div key={category.id} className="my-8 ">
                     <div className="flex  justify-center  ">
-                        <h2 className="text-[20px] lg:text-[25px]  font-medium   text-center    hover:font-[800] duration-300 cursor-pointer">
-                            {category.category_name}
-                        </h2>
+                        <button onClick={()=>clickSetActiveCategory(category.category_name)}>
+                            <h2 className={activeCategory===category.category_name?"categoryButton activeCategoryButton":"categoryButton"}>
+                                {category.category_name}
+                            </h2>
+                        </button>
+
                     </div>
                 </div>
             ))}

@@ -5,12 +5,14 @@ import {fetchCategory} from "./categoryAction";
 
 
 interface CategorySliceState{
+    activeCategory:string
     categories:CategoryItem[];
     error:SerializedError;
     isLoading:boolean;
 }
 
 const initialState: CategorySliceState = {
+    activeCategory:'',
     categories:[],
     error:{},
     isLoading:false
@@ -19,7 +21,11 @@ const initialState: CategorySliceState = {
 const categorySlice = createSlice({
     name: 'category',
     initialState,
-    reducers: {},
+    reducers: {
+        setActiveCategory:(state, action: PayloadAction<string>) => {
+            state.activeCategory = action.payload
+        },
+    },
 
     extraReducers: (builder) => {
         builder.addCase(fetchCategory.pending, (state, action) => {
@@ -37,7 +43,7 @@ const categorySlice = createSlice({
     }
 });
 
-export const {} =
+export const {setActiveCategory} =
     categorySlice.actions;
 
 export default categorySlice.reducer;

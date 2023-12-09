@@ -18,7 +18,7 @@ const SortContainer = ({products}: SortProps) => {
                             />
                             <div className={'flex justify-between py-2 px-2'}>
                                 <p className={'font-bold text-[23px]'}>{product.name}</p>
-                                <p className={'bg-orange-700 rounded-full  -mt-10 border-8 border-white py-4 px-2 text-white font-bold'}>{product.price}</p>
+                                <p className={'bg-orange-700 rounded-full  w-[70px] h-[70px] -mt-10 border-8 border-white pt-3 px-2 text-white text-[20px] font-bold'}>{product.price}</p>
                             </div>
                         </div>
 

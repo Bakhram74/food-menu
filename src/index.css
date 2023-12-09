@@ -9,6 +9,15 @@
 
 }
 
+@layer components {
+    .categoryButton {
+        @apply text-[20px] lg:text-[25px]  font-medium   text-center  hover:scale-125 duration-300 duration-300 ;
+    }
+    .activeCategoryButton{
+        @apply scale-125 duration-300 font-[800];
+    }
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -18,14 +27,5 @@
     box-sizing: border-box;
 }
 
-html {
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
 
-body {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-
-}
 
