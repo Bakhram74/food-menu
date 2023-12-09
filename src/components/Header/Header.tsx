@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/images/andalusia.png'
 const Header = () => {
     return (
-        <div className={' h-[300px] md:h-[500px] w-full relative'}>
+        <div className={' h-[200px] md:h-[350px]  w-full relative'}>
                 <div className={'absolute w-full h-full bg-black/40  text-[#FFFFFF] pt-3 pl-3 ' }>
                     <img className={'rounded-full w-[80px] h-[60px] md:w-[110px] md:h-[90px] lg:w-[120px] md:h-[100px]'} src={logo}/>
                 </div>

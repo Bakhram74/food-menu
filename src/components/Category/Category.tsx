@@ -58,12 +58,12 @@ function Category() {
     };
     return (
 
-    <div className="w-full h-[100px] ">
+    <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky z-20">
         {isLoading && <h1>Идет загрузка...</h1>}
         {error && <h1>{error.message}</h1>}
         <Slider {...settings}>
             {categories.map((category) => (
-                <div key={category.id} className="py-8 bg-[#fff]">
+                <div key={category.id} className="my-8 ">
                     <div className="flex  justify-center  ">
                         <h2 className="text-[20px] lg:text-[25px]  font-medium   text-center    hover:font-[800] duration-300 cursor-pointer">
                             {category.category_name}
