@@ -1,18 +1,19 @@
 import React from 'react';
 import {ProductItem} from "../../../redux/product/productTypes";
+import category from "../../Category/Category";
 
 type SortProps = {
     products: ProductItem[]
+    categoryName:string
 }
 
-const SortContainer = ({products}: SortProps) => {
+const Sort = ({products,categoryName}: SortProps) => {
 
     return (
         <>
             {products.map(product =>
-                <div key={product.id}>
-                    {/*<div className={'grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-6 py-4'}>*/}
-                        <div className={'border-none hover:scale-105 duration-300'} key={product.id}>
+                <div key={product.id} id={categoryName}>
+                        <div className={'border-none hover:scale-105 duration-300'} key={product.id} >
                             <img src={product.url} alt={product.name}
                                  className={'w-full h-[200px] object-cover rounded-lg'}
                             />
@@ -23,11 +24,10 @@ const SortContainer = ({products}: SortProps) => {
                         </div>
 
                     </div>
-                // </div>
             )
             }
         </>
     );
 };
 
-export default SortContainer;
+export default Sort;

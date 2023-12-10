@@ -1,30 +1,28 @@
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import {useAppDispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
-import React, { useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {selectCategory} from "../../redux/selectors";
 import {fetchCategory} from "../../redux/category/categoryAction";
 import {SampleNextArrow, SamplePrevArrow} from "./Arrow";
-import {setActiveCategory} from "../../redux/category/categorySlice";
 
-
-
-
+import {Link} from 'react-scroll';
 
 
 function Category() {
     const dispatch = useAppDispatch();
-    const {activeCategory,categories,isLoading,error} = useSelector(selectCategory);
+    const { categories, isLoading, error} = useSelector(selectCategory);
+
     useEffect(() => {
         dispatch(fetchCategory())
-    },[] )
+    }, [])
 
-const clickSetActiveCategory=(category:string)=>{
-        dispatch(setActiveCategory(category))
-}
-    console.log(activeCategory)
+    // const clickSetActiveCategory = (category: string) => {
+    //     dispatch(setActiveCategory(category))
+    // }
+
+
     const settings = {
         infinite: true,
         speed: 500,
@@ -61,25 +59,36 @@ const clickSetActiveCategory=(category:string)=>{
     };
     return (
 
-    <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky top-0  z-20">
-        {isLoading && <h1>Идет загрузка...</h1>}
-        {error && <h1>{error.message}</h1>}
-        <Slider {...settings}>
-            {categories.map((category) => (
-                <div key={category.id} className="my-8 ">
-                    <div className="flex  justify-center  ">
-                        <button onClick={()=>clickSetActiveCategory(category.category_name)}>
-                            <h2 className={activeCategory===category.category_name?"categoryButton activeCategoryButton":"categoryButton"}>
-                                {category.category_name}
-                            </h2>
-                        </button>
+        <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky top-0  z-20">
+            {isLoading && <h1>Идет загрузка...</h1>}
+            {error && <h1>{error.message}</h1>}
+            <Slider {...settings}>
+                {categories.map((category) => (
+                    <div key={category.id} className="my-8 ">
+                        <div className="flex  justify-center ">
 
+                                <Link
+                                    activeClass={'activeCategoryButton'}
+                                    to={category.category_name}
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-200}
+                                    duration={500}
+
+                                >
+                                    <button>
+                                    <h2  className={ "categoryButton"}>
+                                        {category.category_name}
+                                    </h2>
+                                    </button>
+                                </Link>
+
+
+                        </div>
                     </div>
-                </div>
-            ))}
-        </Slider>
-    </div>
-
+                ))}
+            </Slider>
+        </div>
 
 
     );

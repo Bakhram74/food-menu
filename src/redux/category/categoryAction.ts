@@ -5,6 +5,7 @@ import {CategoryItem} from "./categoryTypes";
 
 
 
+
 export const fetchCategory = createAsyncThunk(
     'category/fetchCategory',
     async (_, thunkAPI) => {

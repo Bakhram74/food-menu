@@ -23,7 +23,10 @@ const Product = () => {
         <div className={' m-auto px-5 py-5'}>
 
             <TopProduct/>
-            {categories.map(category => <SortContainer category={category} products={products} key={category.id}/>)}
+
+                {categories.map(category => <SortContainer category={category} products={products} key={category.id}/>)}
+
+
 
 
         </div>

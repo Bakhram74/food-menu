@@ -11,11 +11,12 @@
 
 @layer components {
     .categoryButton {
-        @apply text-[20px] lg:text-[25px]  font-medium   text-center  hover:scale-125 duration-300 duration-300 ;
+        @apply text-[20px] lg:text-[25px]  font-medium   text-center  hover:scale-125 duration-300 ;
     }
     .activeCategoryButton{
-        @apply scale-125 duration-300 font-[800];
+        @apply scale-125 duration-300 font-[900];
     }
+
 }
 
 * {
