@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 
 import TopProduct from "./TopProduct/TopProduct";
-import Sort from "./Sort/SortContainer";
+
 import {useSelector} from "react-redux";
 import {selectCategory, selectProduct} from "../../redux/selectors";
 import {useAppDispatch} from "../../redux/store";

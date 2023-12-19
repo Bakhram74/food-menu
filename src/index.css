@@ -16,7 +16,9 @@
     .activeCategoryButton{
         @apply scale-125 duration-300 font-[900];
     }
-
+.editInput{
+    @apply w-[300px] md:w-[450px] h-10 md:h-14 text-xl md:text-2xl text-center mt-2 border-gray-500 border-2 rounded-xl
+}
 }
 
 * {

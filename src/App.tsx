@@ -5,6 +5,7 @@ import {createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProv
 import Category from "./components/Category/Category";
 import Header from "./components/Header/Header";
 import Product from "./components/Product/Product";
+import FullProduct from "./components/Product/FullProduct/FullProduct";
 
 
 const Layout = () => {
@@ -23,8 +24,8 @@ const router = createBrowserRouter(
 
         <Route>
             <Route path="/" element={<Layout/>}>
-
             </Route>
+            <Route path="product/:id" element={<FullProduct/>}/>
         </Route>
     )
 );
