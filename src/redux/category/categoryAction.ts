@@ -10,7 +10,9 @@ export const fetchCategory = createAsyncThunk(
     'category/fetchCategory',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get<CategoryItem[]>(`http://localhost:4200/category`);
+            const response = await axios.get<CategoryItem[]>(`http://localhost:4200/category`,{
+
+            });
             return  response.data
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
