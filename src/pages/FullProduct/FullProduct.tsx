@@ -52,7 +52,7 @@ const FullProduct = () => {
             is_available: product.is_available,
             is_on_top: product.is_on_top
         }})
-    const { register, control, handleSubmit, formState } = form;
+    const { register, handleSubmit, formState } = form;
     const { errors } = formState;
 
     const onSubmit = (data: FormValues) => {

@@ -5,6 +5,7 @@ export type ProductItem = {
     name:string
     url:string
     price:number
+    description:string
     is_on_top:boolean
     is_available:boolean
 };

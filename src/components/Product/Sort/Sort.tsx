@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {ProductItem} from "../../../redux/product/productTypes";
 import {MdEdit} from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import DescButton from "../../Button/DescButton";
 type SortProps = {
     products: ProductItem[]
     categoryName: string
@@ -13,6 +14,12 @@ const Sort = ({products, categoryName}: SortProps) => {
     const setEditProduct = (id:number)=>{
         navigate(`/product/${id}`);
     }
+
+    const description = "Takes inspiration from libraries like Immer and Autodux " +
+        "to let you write mutative immutable update logic, " +
+        "and even create entire" +
+        " slices of state automatically."
+
     return (
         <>
             {products.map(product =>
@@ -31,6 +38,7 @@ const Sort = ({products, categoryName}: SortProps) => {
                             <p className={'font-bold text-[23px]'}>{product.name}</p>
                             <p className={'bg-orange-700 rounded-full  w-[70px] h-[70px] -mt-10 border-8 border-white pt-3 px-2 text-white text-[20px] font-bold'}>{product.price}</p>
                         </div>
+                        <DescButton description={description}/>
                     </div>
 
                 </div>

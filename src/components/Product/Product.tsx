@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import TopProduct from "./TopProduct/TopProduct";
+import TopProductContainer from "./TopProduct/TopProductContainer";
 
 import {useSelector} from "react-redux";
 import {selectCategory, selectProduct} from "../../redux/selectors";
@@ -22,7 +22,7 @@ const Product = () => {
     return (
         <div className={' m-auto px-5 py-5'}>
 
-            <TopProduct/>
+            <TopProductContainer/>
 
                 {categories.map(category => <SortContainer category={category} products={products} key={category.id}/>)}
 

@@ -18,9 +18,6 @@ function Category() {
         dispatch(fetchCategory())
     }, [])
 
-    // const clickSetActiveCategory = (category: string) => {
-    //     dispatch(setActiveCategory(category))
-    // }
 
 
     const settings = {
@@ -59,7 +56,7 @@ function Category() {
     };
     return (
 
-        <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky top-0  z-20">
+        <div className="w-full h-[100px] mb-4   border-b-2 border-[#FFF8DC] bg-[#FFFFE0] sticky top-0  z-10">
             {isLoading && <h1>Идет загрузка...</h1>}
             {error && <h1>{error.message}</h1>}
             <Slider {...settings}>
