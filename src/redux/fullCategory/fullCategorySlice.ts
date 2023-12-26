@@ -1,19 +1,21 @@
 import {CategoryItem} from "../category/categoryTypes";
 import {createSlice, PayloadAction, SerializedError} from "@reduxjs/toolkit";
 import {fetchCategory} from "../category/categoryAction";
-import {fetchNewCategory} from "./fullCategoryAction";
+import {deleteCategoryAction, fetchNewCategory} from "./fullCategoryAction";
 
 
 interface FullCategorySliceState{
     category:string
     error:SerializedError;
     isLoading:boolean;
+    isSucceed:boolean
 }
 
 const initialState: FullCategorySliceState = {
     category:"",
     error:{},
-    isLoading:false
+    isLoading:false,
+    isSucceed:false
 };
 
 const fullCategorySlice = createSlice({
@@ -31,6 +33,18 @@ const fullCategorySlice = createSlice({
             state.category = action.payload;
         });
         builder.addCase(fetchNewCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error;
+        });
+        builder.addCase(deleteCategoryAction.pending, (state, action) => {
+            state.isLoading = true;
+
+        });
+        builder.addCase(deleteCategoryAction.fulfilled, (state) => {
+            state.isLoading = false;
+            state.isSucceed = true;
+        });
+        builder.addCase(deleteCategoryAction.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error;
         });

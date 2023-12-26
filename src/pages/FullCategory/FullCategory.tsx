@@ -11,15 +11,16 @@ import EditableCategory from "./EditableCategory";
 
 
 const FullCategory = () => {
+    const [newCategory,setNewCategory]=useState('')
     const dispatch = useAppDispatch();
+    const{isSucceed} = useSelector(selectFullCategory)
     const {categories} = useSelector(selectCategory);
     const{category} = useSelector(selectFullCategory)
     useEffect(() => {
         dispatch(fetchCategory())
-    }, [category])
+    }, [category,isSucceed])
 
-    const [newCategory,setNewCategory]=useState('')
-
+    console.log("FullCategory")
 const handleNewCategory=(e:ChangeEvent<HTMLInputElement>)=>{
     setNewCategory(e.currentTarget.value)
 }
@@ -30,14 +31,14 @@ const clickNewCategory=()=>{
 
     return (
         <div className={'flex flex-col items-center'}>
-            <div className={'flex items-center mt-6'}>
+            <div className={'flex items-center mt-6 mb-6'}>
                 <input type="text"
                        placeholder={'Добавить'}
                        value={newCategory}
                        onChange={(e)=>handleNewCategory(e)}
                        className={'text-[30px] border-2 border-gray-400  rounded-xl text-center mr-2'}
                 />
-                <MdOutlineAdd size={40} onClick={clickNewCategory} className={'cursor-pointer'}/>
+                <MdOutlineAdd size={40} onClick={clickNewCategory} className={'hoverScale cursor-pointer'} />
             </div>
 
 

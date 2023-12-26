@@ -24,7 +24,7 @@ const Sort = ({products, categoryName}: SortProps) => {
         <>
             {products.map(product =>
                 <div key={product.id} id={categoryName}>
-                    <div className={'border-none hover:scale-105 duration-300 relative'} key={product.id}>
+                    <div className={'hoverScale border-none  relative'} key={product.id}>
                         {isAuth &&
                             <MdEdit
                                 onClick={()=>setEditProduct(product.id)}
