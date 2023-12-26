@@ -26,3 +26,16 @@ export const deleteCategoryAction = createAsyncThunk(
         }
     }
 );
+export const updateCategoryAction = createAsyncThunk(
+    'category/deleteCategory',
+
+    async (  {id, name}:{id: number, name: string}, thunkAPI) => {
+
+        try {
+            const response = await axios.put(`http://localhost:4200/category`,  { "category_name": name,"id":id });
+            return  response.data
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error)
+        }
+    }
+);

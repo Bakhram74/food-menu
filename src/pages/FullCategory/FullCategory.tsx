@@ -8,19 +8,22 @@ import {MdEdit} from "react-icons/md";
 import {fetchNewCategory} from "../../redux/fullCategory/fullCategoryAction";
 import {CategoryItem} from "../../redux/category/categoryTypes";
 import EditableCategory from "./EditableCategory";
+import {renderCategory} from "../../redux/fullCategory/fullCategorySlice";
 
 
 const FullCategory = () => {
     const [newCategory,setNewCategory]=useState('')
+
     const dispatch = useAppDispatch();
-    const{isSucceed} = useSelector(selectFullCategory)
+    const{isRender} = useSelector(selectFullCategory)
     const {categories} = useSelector(selectCategory);
-    const{category} = useSelector(selectFullCategory)
+
     useEffect(() => {
         dispatch(fetchCategory())
-    }, [category,isSucceed])
+        dispatch(renderCategory())
+    }, [isRender])
 
-    console.log("FullCategory")
+
 const handleNewCategory=(e:ChangeEvent<HTMLInputElement>)=>{
     setNewCategory(e.currentTarget.value)
 }

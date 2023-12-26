@@ -1,27 +1,31 @@
 import {CategoryItem} from "../category/categoryTypes";
 import {createSlice, PayloadAction, SerializedError} from "@reduxjs/toolkit";
 import {fetchCategory} from "../category/categoryAction";
-import {deleteCategoryAction, fetchNewCategory} from "./fullCategoryAction";
+import {deleteCategoryAction, fetchNewCategory, updateCategoryAction} from "./fullCategoryAction";
 
 
 interface FullCategorySliceState{
-    category:string
+
     error:SerializedError;
     isLoading:boolean;
-    isSucceed:boolean
+    isRender:boolean
 }
 
 const initialState: FullCategorySliceState = {
-    category:"",
+
     error:{},
     isLoading:false,
-    isSucceed:false
+    isRender:false
 };
 
 const fullCategorySlice = createSlice({
     name: 'fullCategory',
     initialState,
-    reducers: {},
+    reducers: {
+        renderCategory: (state) => {
+            state.isRender =false
+        },
+    },
 
     extraReducers: (builder) => {
         builder.addCase(fetchNewCategory.pending, (state, action) => {
@@ -30,7 +34,7 @@ const fullCategorySlice = createSlice({
         });
         builder.addCase(fetchNewCategory.fulfilled, (state, action:PayloadAction<string>) => {
             state.isLoading = false;
-            state.category = action.payload;
+            state.isRender = true;
         });
         builder.addCase(fetchNewCategory.rejected, (state, action) => {
             state.isLoading = false;
@@ -42,7 +46,7 @@ const fullCategorySlice = createSlice({
         });
         builder.addCase(deleteCategoryAction.fulfilled, (state) => {
             state.isLoading = false;
-            state.isSucceed = true;
+            state.isRender = true;
         });
         builder.addCase(deleteCategoryAction.rejected, (state, action) => {
             state.isLoading = false;
@@ -51,7 +55,7 @@ const fullCategorySlice = createSlice({
     }
 });
 
-export const {} =
+export const {renderCategory} =
     fullCategorySlice.actions;
 
 export default fullCategorySlice.reducer;
